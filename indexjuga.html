@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Bank Sampah Milkita Green</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* RESET & BASE STYLES - MOBILE FIRST */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        :root {
+            /* GREEN-WHITE THEME (DEFAULT) */
+            --primary: #2E8B57;
+            --primary-light: #3CB371;
+            --primary-dark: #1E5E3E;
+            --secondary: #FFFFFF;
+            --secondary-light: #F8F9FA;
+            --secondary-dark: #E9ECEF;
+            --accent: #4CAF50;
+            --text: #2C3E2C;
+            --text-light: #5D7C5D;
+            --text-inverse: #FFFFFF;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F5F5F5;
+            --bg-card: #FFFFFF;
+            --border: #E0E0E0;
+            --shadow: rgba(46, 139, 87, 0.1);
+            --success: #28A745;
+            --warning: #FF9800;
+            --info: #17A2B8;
+            
+            /* Effects */
+            --shadow-sm: 0 2px 8px var(--shadow);
+            --shadow-md: 0 4px 12px var(--shadow);
+            --shadow-lg: 0 8px 24px var(--shadow);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Spacing */
+            --space-xs: 8px;
+            --space-sm: 12px;
+            --space-md: 16px;
+            --space-lg: 20px;
+            --space-xl: 24px;
+            --space-2xl: 32px;
+            --space-3xl: 48px;
+        }
+        
+        /* ORANGE-GREEN THEME */
+        .theme-orange {
+            --primary: #FF9800;
+            --primary-light: #FFB74D;
+            --primary-dark: #F57C00;
+            --secondary: #2E8B57;
+            --secondary-light: #3CB371;
+            --secondary-dark: #1E5E3E;
+            --accent: #FF5722;
+            --text: #333333;
+            --text-light: #666666;
+            --text-inverse: #FFFFFF;
+            --bg-primary: #FFF8F0;
+            --bg-secondary: #FFFAF5;
+            --bg-card: #FFFFFF;
+            --border: #FFE0B2;
+            --shadow: rgba(255, 152, 0, 0.15);
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --info: #2196F3;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            background-color: var(--bg-primary);
+            line-height: 1.5;
+            overflow-x: hidden;
+            min-height: 100vh;
+            transition: var(--transition);
+        }
+        
+        /* THEME SWITCHER */
+        .theme-switcher {
+            position: fixed;
+            top: 80px;
+            right: var(--space-md);
+            z-index: 1000;
+            display: flex;
+            gap: var(--space-xs);
+            background: var(--bg-card);
+            padding: 6px;
+            border-radius: 50px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+        }
+        
+        .theme-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            background: transparent;
+            color: var(--text-light);
+        }
+        
+        .theme-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .theme-btn:hover:not(.active) {
+            background: var(--secondary-light);
+        }
+        
+        /* TYPOGRAPHY */
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: var(--space-md);
+            color: var(--primary-dark);
+        }
+        
+        h1 {
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+        }
+        
+        h2 {
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+        }
+        
+        h3 {
+            font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+        }
+        
+        h4 {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+        }
+        
+        p {
+            margin-bottom: var(--space-md);
+            font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+            color: var(--text-light);
+        }
+        
+        /* UTILITY CLASSES */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--text-inverse);
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            white-space: nowrap;
+            min-height: 48px;
+            min-width: 120px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+            color: var(--text);
+        }
+        
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent), var(--warning));
+            color: white;
+        }
+        
+        .section {
+            padding: var(--space-2xl) 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+        
+        .section-title h2 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: var(--space-sm);
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+        }
+        
+        /* HEADER */
+        header {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: var(--space-sm) 0;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            min-width: 0;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .logo-text h1 {
+            font-size: clamp(1rem, 3.5vw, 1.3rem);
+            color: var(--primary-dark);
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .logo-text span {
+            font-size: clamp(0.7rem, 2.5vw, 0.8rem);
+            color: var(--text-light);
+            font-weight: 500;
+            display: block;
+        }
+        
+        /* DESKTOP NAV */
+        .desktop-nav {
+            display: none;
+        }
+        
+        /* MOBILE MENU */
+        .mobile-menu-btn {
+            width: 44px;
+            height: 44px;
+            background: var(--primary);
+            border: none;
+            border-radius: var(--radius-sm);
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .mobile-menu-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* MOBILE NAV */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 9999;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            padding: 80px var(--space-md) var(--space-xl);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .mobile-nav.active {
+            transform: translateX(0);
+        }
+        
+        .mobile-nav-close {
+            position: fixed;
+            top: var(--space-md);
+            right: var(--space-md);
+            width: 44px;
+            height: 44px;
+            background: var(--primary);
+            border: none;
+            border-radius: var(--radius-sm);
+            color: white;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10001;
+        }
+        
+        .mobile-nav-links {
+            list-style: none;
+            margin-top: var(--space-lg);
+            width: 100%;
+        }
+        
+        .mobile-nav-links li {
+            margin-bottom: var(--space-xs);
+            width: 100%;
+        }
+        
+        .mobile-nav-links a {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-md);
+            background: rgba(46, 139, 87, 0.05);
+            border-radius: var(--radius-md);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            width: 100%;
+        }
+        
+        .mobile-nav-links a:hover,
+        .mobile-nav-links a.active {
+            background: rgba(46, 139, 87, 0.1);
+            border-color: var(--primary);
+        }
+        
+        .mobile-nav-links i {
+            color: var(--primary);
+            width: 24px;
+            text-align: center;
+        }
+        
+        /* MAIN CONTENT */
+        main {
+            padding-top: 70px;
+        }
+        
+        /* HERO SECTION */
+        .hero {
+            padding: var(--space-3xl) 0;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(46, 139, 87, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(76, 175, 122, 0.08) 0%, transparent 40%);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-btns {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            align-items: center;
+            margin-top: var(--space-xl);
+            width: 100%;
+        }
+        
+        .hero-btns .btn {
+            width: 100%;
+            max-width: 280px;
+        }
+        
+        /* FEATURES SECTION */
+        .features {
+            background: var(--bg-secondary);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+        
+        .feature-card {
+            background: var(--bg-card);
+            padding: var(--space-xl);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 auto var(--space-md);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        /* SERVICES SECTION */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+        
+        .service-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .service-header {
+            padding: var(--space-xl);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            text-align: center;
+        }
+        
+        .service-icon {
+            font-size: 2.2rem;
+            margin-bottom: var(--space-md);
+        }
+        
+        .service-content {
+            padding: var(--space-lg);
+        }
+        
+        /* WASTE TYPES */
+        .waste-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+            margin-top: var(--space-xl);
+        }
+        
+        .waste-card {
+            background: var(--bg-card);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+        
+        .waste-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .waste-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 auto var(--space-md);
+        }
+        
+        /* PRICING */
+        .price-table-container {
+            overflow-x: auto;
+            margin: var(--space-xl) 0;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            background: var(--bg-card);
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .price-table-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .price-table {
+            width: 100%;
+            min-width: 500px;
+            border-collapse: collapse;
+        }
+        
+        .price-table thead {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+        }
+        
+        .price-table th {
+            color: white;
+            font-weight: 600;
+            padding: var(--space-md);
+            text-align: left;
+        }
+        
+        .price-table td {
+            padding: var(--space-md);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .price-highlight {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        /* CONTACT */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-xl);
+        }
+        
+        .contact-info h3 {
+            color: var(--primary-dark);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+        }
+        
+        .contact-form {
+            background: var(--bg-card);
+            padding: var(--space-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: var(--space-sm);
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            color: var(--text);
+            transition: var(--transition);
+            background: var(--bg-card);
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.1);
+        }
+        
+        /* FOOTER */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            padding: var(--space-xl) 0 var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: var(--space-md);
+            position: relative;
+            padding-bottom: var(--space-sm);
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary-light);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: var(--space-sm);
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: var(--space-lg);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* MOBILE BOTTOM NAV */
+        .mobile-bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--bg-card);
+            border-top: 2px solid var(--primary);
+            padding: 10px 0 calc(10px + env(safe-area-inset-bottom, 0px));
+            z-index: 999;
+            display: block;
+            box-shadow: 0 -4px 20px var(--shadow);
+        }
+        
+        .bottom-nav-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 var(--space-sm);
+        }
+        
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            flex: 1;
+            max-width: 80px;
+            min-width: 60px;
+        }
+        
+        .bottom-nav-item.active,
+        .bottom-nav-item:hover {
+            color: var(--primary);
+            background: rgba(46, 139, 87, 0.1);
+        }
+        
+        .bottom-nav-item i {
+            font-size: 1.2rem;
+        }
+        
+        .bottom-nav-item span {
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        /* RESPONSIVE DESIGN */
+        @media (min-width: 480px) {
+            .waste-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .hero-btns {
+                flex-direction: row;
+                justify-content: center;
+            }
+            
+            .hero-btns .btn {
+                width: auto;
+            }
+        }
+        
+        @media (min-width: 640px) {
+            .container {
+                padding: 0 var(--space-lg);
+            }
+            
+            .features-grid,
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .desktop-nav {
+                display: flex;
+                gap: var(--space-lg);
+                align-items: center;
+            }
+            
+            .desktop-nav a {
+                color: var(--text);
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 0.95rem;
+                transition: var(--transition);
+                position: relative;
+                padding: 8px 0;
+            }
+            
+            .desktop-nav a:hover {
+                color: var(--primary);
+            }
+            
+            .desktop-nav a::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: var(--primary);
+                transition: width 0.3s ease;
+            }
+            
+            .desktop-nav a:hover::after {
+                width: 100%;
+            }
+            
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            .mobile-bottom-nav {
+                display: none;
+            }
+            
+            .theme-switcher {
+                top: 90px;
+                right: var(--space-lg);
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .waste-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .hero {
+                padding: calc(var(--space-3xl) * 1.5) 0;
+            }
+            
+            .section {
+                padding: var(--space-3xl) 0;
+            }
+        }
+        
+        /* ANIMATIONS */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        /* TOUCH OPTIMIZATIONS */
+        @media (hover: none) and (pointer: coarse) {
+            .btn:active,
+            .feature-card:active,
+            .service-card:active,
+            .waste-card:active {
+                transform: scale(0.98);
+            }
+            
+            .mobile-nav-links a {
+                min-height: 56px;
+            }
+        }
+        
+        /* IOS SAFARI FIXES */
+        @supports (-webkit-touch-callout: none) {
+            .mobile-nav {
+                height: -webkit-fill-available;
+            }
+            
+            input, textarea, select {
+                font-size: 16px !important;
+            }
+        }
+        
+        /* LOADING STATES */
+        .loading {
+            position: relative;
+        }
+        
+        .loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid white;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 0.6s linear infinite;
+            right: 20px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* ACCESSIBILITY */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        :focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Switcher -->
+    <div class="theme-switcher">
+        <button class="theme-btn active" id="themeGreen" aria-label="Tema Hijau-Putih">
+            <i class="fas fa-leaf"></i>
+        </button>
+        <button class="theme-btn" id="themeOrange" aria-label="Tema Hijau-Oren">
+            <i class="fas fa-sun"></i>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-recycle"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>MILKITA GREEN</h1>
+                    <span>Bank Sampah Premium</span>
+                </div>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav">
+                <a href="#home"><i class="fas fa-home"></i> Beranda</a>
+                <a href="#features"><i class="fas fa-star"></i> Keunggulan</a>
+                <a href="#services"><i class="fas fa-concierge-bell"></i> Layanan</a>
+                <a href="#waste"><i class="fas fa-trash-alt"></i> Jenis Sampah</a>
+                <a href="#pricing"><i class="fas fa-tags"></i> Harga</a>
+                <a href="#contact"><i class="fas fa-phone"></i> Kontak</a>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Buka menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <button class="mobile-nav-close" id="mobileNavClose" aria-label="Tutup menu">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="logo" style="margin-bottom: var(--space-lg);">
+            <div class="logo-icon">
+                <i class="fas fa-recycle"></i>
+            </div>
+            <div class="logo-text">
+                <h1>MILKITA ZINDO</h1>
+                <span>Bank Sampah Premium</span>
+            </div>
+        </div>
+        
+        <ul class="mobile-nav-links">
+            <li><a href="#home" class="active"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="#features"><i class="fas fa-star"></i> Keunggulan</a></li>
+            <li><a href="#services"><i class="fas fa-concierge-bell"></i> Layanan</a></li>
+            <li><a href="#waste"><i class="fas fa-trash-alt"></i> Jenis Sampah</a></li>
+            <li><a href="#pricing"><i class="fas fa-tags"></i> Harga</a></li>
+            <li><a href="#contact"><i class="fas fa-phone"></i> Kontak</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero section" id="home">
+            <div class="hero-bg"></div>
+            <div class="container">
+                <div class="hero-content fade-in">
+                    <h1>Bank Sampah Milkita Green</h1>
+                    <p>Mengubah sampah menjadi sumber daya bernilai melalui teknologi daur ulang mutakhir. Bergabunglah dalam revolusi pengelolaan sampah yang ramah lingkungan dan menguntungkan.</p>
+                    
+                    <div class="hero-btns">
+                        <a href="#services" class="btn">
+                            <i class="fas fa-play-circle"></i> Mulai Sekarang
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-question-circle"></i> Pelajari Lebih Lanjut
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features section" id="features">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Keunggulan Kami</h2>
+                    <p class="section-subtitle">Mengapa memilih Milkita Green sebagai mitra pengelolaan sampah Anda?</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Ramah Lingkungan</h3>
+                        <p>Proses daur ulang dengan teknologi zero waste dan emisi minimal untuk lingkungan yang lebih baik.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Teknologi Canggih</h3>
+                        <p>Sistem pengolahan mutakhir yang memastikan efisiensi maksimal dan kualitas terbaik.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Nilai Ekonomi</h3>
+                        <p>Mengubah sampah menjadi sumber pendapatan tambahan dengan harga yang kompetitif.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3>Penjemputan Gratis</h3>
+                        <p>Layanan penjemputan door-to-door untuk kenyamanan dan kemudahan nasabah.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Aman & Terpercaya</h3>
+                        <p>Transaksi transparan dengan sistem keamanan yang terjamin dan terpercaya.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Komunitas Besar</h3>
+                        <p>Bergabung dengan komunitas 10.000+ anggota yang peduli lingkungan.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services section" id="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Layanan Kami</h2>
+                    <p class="section-subtitle">Solusi lengkap pengelolaan sampah untuk kebutuhan rumah tangga dan bisnis</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <i class="fas fa-piggy-bank"></i>
+                            </div>
+                            <h3>Tabungan Sampah</h3>
+                        </div>
+                        <div class="service-content">
+                            <p>Sistem tabungan digital dengan bunga kompetitif. Setor sampah Anda dan nikmati kemudahan penarikan dana kapan saja melalui aplikasi mobile.</p>
+                            <a href="#contact" class="btn" style="width: 100%; margin-top: var(--space-md);">Daftar Sekarang</a>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <i class="fas fa-truck-loading"></i>
+                            </div>
+                            <h3>Penjemputan Rutin</h3>
+                        </div>
+                        <div class="service-content">
+                            <p>Layanan penjemputan door-to-door dengan jadwal fleksibel. Pilih hari dan waktu yang sesuai dengan kebutuhan Anda.</p>
+                            <a href="#contact" class="btn" style="width: 100%; margin-top: var(--space-md);">Jadwalkan</a>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h3>Konsultasi Bisnis</h3>
+                        </div>
+                        <div class="service-content">
+                            <p>Konsultasi gratis untuk bisnis dan industri dalam mengoptimalkan pengelolaan limbah dan meningkatkan efisiensi.</p>
+                            <a href="#contact" class="btn" style="width: 100%; margin-top: var(--space-md);">Konsultasi Gratis</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Waste Types Section -->
+        <section class="waste section" id="waste">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Jenis Sampah Diterima</h2>
+                    <p class="section-subtitle">Kami menerima berbagai jenis material untuk didaur ulang dengan harga terbaik</p>
+                </div>
+                
+                <div class="waste-grid">
+                    <div class="waste-card">
+                        <div class="waste-icon">
+                            <i class="fas fa-bottle-water"></i>
+                        </div>
+                        <h3>Plastik</h3>
+                        <p>PET, HDPE, PP, PVC, dan jenis plastik lainnya</p>
+                    </div>
+                    
+                    <div class="waste-card">
+                        <div class="waste-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <h3>Kertas</h3>
+                        <p>Koran, karton, majalah, kertas HVS, dan kertas khusus</p>
+                    </div>
+                    
+                    <div class="waste-card">
+                        <div class="waste-icon">
+                            <i class="fas fa-wine-bottle"></i>
+                        </div>
+                        <h3>Kaca</h3>
+                        <p>Botol kaca, gelas, kaca jendela, dan keramik</p>
+                    </div>
+                    
+                    <div class="waste-card">
+                        <div class="waste-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h3>Elektronik</h3>
+                        <p>Komputer, handphone, kabel, PCB, dan komponen elektronik</p>
+                    </div>
+                    
+                    <div class="waste-card">
+                        <div class="waste-icon">
+                            <i class="fas fa-oil-can"></i>
+                        </div>
+                        <h3>Minyak</h3>
+                        <p>Minyak jelantah untuk produksi biodiesel</p>
+                    </div>
+                    
+                    <div class="waste-card">
+                        <div class="waste-icon">
+                            <i class="fas fa-battery-full"></i>
+                        </div>
+                        <h3>Baterai</h3>
+                        <p>Baterai bekas dengan penanganan khusus dan aman</p>
+                    </div>
+                    
+                    <div class="waste-card">
+                        <div class="waste-icon">
+                            <i class="fas fa-wine-glass-alt"></i>
+                        </div>
+                        <h3>Logam</h3>
+                        <p>Besi, aluminium, tembaga, kuningan, dan logam lainnya</p>
+                    </div>
+                    
+                    <div class="waste-card">
+                        <div class="waste-icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h3>Tekstil</h3>
+                        <p>Pakaian bekas, kain perca, dan produk tekstil lainnya</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing section" id="pricing">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Harga Sampah Terbaru</h2>
+                    <p class="section-subtitle">Harga transparan dan kompetitif berdasarkan kualitas material</p>
+                </div>
+                
+                <div class="price-table-container">
+                    <table class="price-table">
+                        <thead>
+                            <tr>
+                                <th>Jenis Material</th>
+                                <th>Kualitas</th>
+                                <th>Harga (Rp/kg)</th>
+                                <th>Ketentuan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Plastik PET</td>
+                                <td>Grade A</td>
+                                <td class="price-highlight">8.500</td>
+                                <td>Tanpa label, bersih, kering</td>
+                            </tr>
+                            <tr>
+                                <td>Plastik HDPE</td>
+                                <td>Grade A</td>
+                                <td class="price-highlight">7.200</td>
+                                <td>Bersih, tanpa sisa makanan</td>
+                            </tr>
+                            <tr>
+                                <td>Kardus</td>
+                                <td>Premium</td>
+                                <td class="price-highlight">4.800</td>
+                                <td>Kering, tanpa minyak/grease</td>
+                            </tr>
+                            <tr>
+                                <td>Kertas HVS</td>
+                                <td>Putih</td>
+                                <td>3.500</td>
+                                <td>Tidak tercampur dengan kertas lain</td>
+                            </tr>
+                            <tr>
+                                <td>Aluminium</td>
+                                <td>Bersih</td>
+                                <td class="price-highlight">25.000</td>
+                                <td>Tanpa cat/plastik, bersih</td>
+                            </tr>
+                            <tr>
+                                <td>Tembaga</td>
+                                <td>Murni</td>
+                                <td class="price-highlight">85.000</td>
+                                <td>Tanpa isolasi/kotoran</td>
+                            </tr>
+                            <tr>
+                                <td>Minyak Jelantah</td>
+                                <td>Bersih</td>
+                                <td>5.000</td>
+                                <td>Disaring, tanpa air</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div style="text-align: center; margin-top: var(--space-xl);">
+                    <p style="font-style: italic; color: var(--text-light);">
+                        <i class="fas fa-info-circle" style="color: var(--primary);"></i>
+                        Harga dapat berubah sesuai kondisi pasar. Minimal penjemputan 10kg.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact section" id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Hubungi Kami</h2>
+                    <p class="section-subtitle">Tim kami siap membantu Anda bergabung dengan Milkita Green</p>
+                </div>
+                
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>Informasi Kontak</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Kantor Pusat</h4>
+                                <p>Jl. Lingkungan Hijau No. 123<br>Eco Business Park, Jakarta Barat 12580</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4>Telepon & WhatsApp</h4>
+                                <p>1500-888 (24/7 Hotline)<br>+62 812 3456 7890 (WhatsApp)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>info@milkita-green.id<br>support@milkita-green.id</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4>Jam Operasional</h4>
+                                <p>Senin - Jumat: 07.00 - 20.00 WIB<br>Sabtu: 08.00 - 17.00 WIB<br>Minggu: 09.00 - 17.00 WIB</p>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <h3 style="margin-bottom: var(--space-lg);">Formulir Pendaftaran</h3>
+                        <form id="registrationForm">
+                            <div class="form-group">
+                                <label for="name">Nama Lengkap *</label>
+                                <input type="text" id="name" name="name" placeholder="Masukkan nama lengkap" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" placeholder="email@domain.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Nomor WhatsApp *</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+62 812 3456 7890" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="address">Alamat Lengkap</label>
+                                <textarea id="address" name="address" placeholder="Jl. Contoh No. 123, Kota" rows="3"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="waste-type">Jenis Sampah Utama *</label>
+                                <select id="waste-type" name="waste-type" required>
+                                    <option value="">Pilih jenis sampah</option>
+                                    <option value="plastik">Plastik</option>
+                                    <option value="kertas">Kertas</option>
+                                    <option value="kaca">Kaca</option>
+                                    <option value="elektronik">Elektronik</option>
+                                    <option value="logam">Logam</option>
+                                    <option value="minyak">Minyak Jelantah</option>
+                                    <option value="campuran">Campuran</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="quantity">Perkiraan Volume (kg/bulan)</label>
+                                <select id="quantity" name="quantity">
+                                    <option value="<10">Kurang dari 10kg</option>
+                                    <option value="10-50">10-50kg</option>
+                                    <option value="50-100">50-100kg</option>
+                                    <option value=">100">Lebih dari 100kg</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="btn" style="width: 100%;">
+                                <i class="fas fa-paper-plane"></i> Kirim Pendaftaran
+                            </button>
+                            
+                            <p style="font-size: 0.85rem; margin-top: var(--space-md); text-align: center; color: var(--text-light);">
+                                * Data Anda akan dijaga kerahasiaannya
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>Milkita Green</h3>
+                    <p>Mengubah sampah menjadi sumber daya bernilai melalui teknologi daur ulang mutakhir untuk lingkungan yang lebih baik.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Link Cepat</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Beranda</a></li>
+                        <li><a href="#features"><i class="fas fa-chevron-right"></i> Keunggulan</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Layanan</a></li>
+                        <li><a href="#waste"><i class="fas fa-chevron-right"></i> Jenis Sampah</a></li>
+                        <li><a href="#pricing"><i class="fas fa-chevron-right"></i> Harga</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Layanan</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Tabungan Sampah</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Penjemputan</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Konsultasi Bisnis</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Pelatihan Daur Ulang</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> CSR Perusahaan</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Kontak</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://maps.google.com" target="_blank"><i class="fas fa-map-marker-alt"></i> Jakarta Barat</a></li>
+                        <li><a href="tel:1500888"><i class="fas fa-phone"></i> 1500-888</a></li>
+                        <li><a href="mailto:info@milkita-green.id"><i class="fas fa-envelope"></i> info@milkita-green.id</a></li>
+                        <li><a href="#"><i class="fas fa-download"></i> Download Brosur</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2022 Bank Sampah Milkita Green. Semua hak dilindungi.</p>
+                <p style="margin-top: 8px; font-size: 0.85rem;">Bagian dari Milkita Eco Solutions Group | Terdaftar dan diawasi oleh Kementerian Lingkungan Hidup dan Kehutanan</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav" id="mobileBottomNav" aria-label="Navigasi bawah">
+        <div class="bottom-nav-container">
+            <a href="#home" class="bottom-nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Beranda</span>
+            </a>
+            <a href="#services" class="bottom-nav-item">
+                <i class="fas fa-concierge-bell"></i>
+                <span>Layanan</span>
+            </a>
+            <a href="#waste" class="bottom-nav-item">
+                <i class="fas fa-trash-alt"></i>
+                <span>Sampah</span>
+            </a>
+            <a href="#contact" class="bottom-nav-item">
+                <i class="fas fa-phone"></i>
+                <span>Kontak</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // Theme Switcher
+        const themeGreenBtn = document.getElementById('themeGreen');
+        const themeOrangeBtn = document.getElementById('themeOrange');
+        const body = document.body;
+        
+        // Load saved theme from localStorage
+        const savedTheme = localStorage.getItem('milkita-theme') || 'green';
+        if (savedTheme === 'orange') {
+            body.classList.add('theme-orange');
+            themeOrangeBtn.classList.add('active');
+            themeGreenBtn.classList.remove('active');
+        }
+        
+        // Green-White Theme
+        themeGreenBtn.addEventListener('click', () => {
+            body.classList.remove('theme-orange');
+            themeGreenBtn.classList.add('active');
+            themeOrangeBtn.classList.remove('active');
+            localStorage.setItem('milkita-theme', 'green');
+        });
+        
+        // Orange-Green Theme
+        themeOrangeBtn.addEventListener('click', () => {
+            body.classList.add('theme-orange');
+            themeOrangeBtn.classList.add('active');
+            themeGreenBtn.classList.remove('active');
+            localStorage.setItem('milkita-theme', 'orange');
+        });
+        
+        // Mobile Navigation
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileNavClose = document.getElementById('mobileNavClose');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        mobileNavClose.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    updateActiveNav(targetId);
+                }
+            });
+        });
+        
+        // Update active navigation
+        function updateActiveNav(targetId) {
+            // Update bottom nav
+            document.querySelectorAll('.bottom-nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === targetId) {
+                    item.classList.add('active');
+                }
+            });
+            
+            // Update mobile nav links
+            mobileNavLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === targetId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Form Submission
+        const registrationForm = document.getElementById('registrationForm');
+        if (registrationForm) {
+            registrationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                // Show loading state
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+                submitBtn.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    const name = document.getElementById('name').value;
+                    showNotification(`Terima kasih ${name}! Pendaftaran berhasil. Tim kami akan menghubungi Anda dalam 1x24 jam.`);
+                    
+                    // Reset form
+                    registrationForm.reset();
+                    
+                    // Restore button
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 1500);
+            });
+        }
+        
+        // Notification System
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--primary);
+                color: white;
+                padding: 14px 24px;
+                border-radius: var(--radius-md);
+                box-shadow: var(--shadow-lg);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                animation: slideDown 0.3s ease;
+                max-width: 90%;
+                font-size: 0.95rem;
+                border: 2px solid var(--primary-light);
+            `;
+            
+            notification.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Add animation style if not exists
+            if (!document.querySelector('#notification-style')) {
+                const style = document.createElement('style');
+                style.id = 'notification-style';
+                style.textContent = `
+                    @keyframes slideDown {
+                        from { transform: translateX(-50%) translateY(-50px); opacity: 0; }
+                        to { transform: translateX(-50%) translateY(0); opacity: 1; }
+                    }
+                    @keyframes slideUp {
+                        from { transform: translateX(-50%) translateY(0); opacity: 1; }
+                        to { transform: translateX(-50%) translateY(-50px); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideUp 0.3s ease forwards';
+                setTimeout(() => notification.remove(), 300);
+            }, 4000);
+        }
+        
+        // Mobile Bottom Nav Behavior
+        let lastScrollTop = 0;
+        const mobileBottomNav = document.getElementById('mobileBottomNav');
+        
+        window.addEventListener('scroll', () => {
+            if (window.innerWidth < 768) {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    mobileBottomNav.style.transform = 'translateY(100%)';
+                    mobileBottomNav.style.transition = 'transform 0.3s ease';
+                } else {
+                    mobileBottomNav.style.transform = 'translateY(0)';
+                    mobileBottomNav.style.transition = 'transform 0.3s ease';
+                }
+                
+                lastScrollTop = scrollTop;
+            }
+        }, { passive: true });
+        
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.add('fade-in');
+            });
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+</body>
+</html>
